@@ -19,9 +19,9 @@ export const registerPatient = async (firstname, lastname, dob, cellNumber, sex,
         "sex" : `${sex}`,
         "email": `${email}`,
         "password": `${password}`,
-        "taxCode": `${taxCode}`
+        "taxCode": `${taxCode}`,
     });
-    localStorage.setItem("token_code",response.data.access_token);
+    localStorage.setItem("token",response.data.access_token);
 };
 
 export const registerDoctor = async (firstname, lastname, dob, cellNumber, sex, email, password, doctorCode, specialization, street, cap, city, province, country) => {
