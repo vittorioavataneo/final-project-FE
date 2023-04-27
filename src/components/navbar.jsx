@@ -5,14 +5,8 @@ function Navbar() {
   return (
     <>
         <nav className="navbar">
-            <NavLink to="/" exact activeClassName="active">
+            <NavLink to="/">
                 Home
-            </NavLink>
-            <NavLink to="/patientLogin" activeClassName="active">
-                Login Paziente
-            </NavLink>
-            <NavLink to="/patientRegistration" activeClassName="active">
-                Registrazione Paziente
             </NavLink>
         </nav>
     </>

@@ -5,7 +5,6 @@ export default function LandingPage() {
         <>
             <div id="sidebar">
                 <h1>Progetto Medici - General Login</h1>
-                <NavLink to="/" activeClassName="active">Homepage</NavLink>
                 <nav>
                     <ul>
 
