@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const authenticate = async (email, password) => {
+
     const response = await axios.post('http://localhost:8080/api/auth/authenticate',
     {
         "email": `${email}`,
@@ -41,7 +42,6 @@ export const registerDoctor = async (firstname, lastname, dob, cellNumber, sex, 
             "city": `${city}`,
             "province": `${province}`,
             "country": `${country}`,
-            
         },
         "specialization": `${specialization}`
     });

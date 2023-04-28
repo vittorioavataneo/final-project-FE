@@ -5,12 +5,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
-import LandingPage from "./routes/landingPage";
 import Login from "./routes/login";
-import Navbar from "./components/navbar.jsx";
 import DoctorRegistration from "./routes/doctorRegistration";
 import PatientRegistration from "./routes/patientRegistration";
 import Root from "./routes/root";
+import PatientPage from "./routes/patientPage";
 
 const router = createBrowserRouter([
     {
@@ -36,11 +35,14 @@ const router = createBrowserRouter([
         {
           path: "/patientRegistration",
           element: <PatientRegistration/>
-        }
+        },
       ]
     },
+    {
+      path: '/patient/:id',
+      element: <PatientPage/>
+    },
     
-  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

@@ -1,4 +1,4 @@
-import { Form } from "react-router-dom";
+import { Form, useNavigate  } from "react-router-dom";
 import { authenticate } from "../api";
 import { useState } from "react";
 import "../index.css";
@@ -6,10 +6,17 @@ import "../index.css";
 export default function Login() {
     const[email, setEmail] = useState("");
     const[password, setPassword] = useState("");
-
+    const[userId, setUserId] = useState(null);
+    const navigate = useNavigate();
 
     function handleSubmit(){
-        authenticate(email, password);
+        authenticate(email, password).then((response) => {
+            setUserId(response.data.user.id); 
+            navigate(`/patient/${userId}`);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
     }
 
     function changeEmail(e){
@@ -34,7 +41,7 @@ export default function Login() {
                                 </label>
                                 <button type="submit">Conferma</button>
                             </Form>
-                        </div>
+            </div>
         </>
     )
 }
