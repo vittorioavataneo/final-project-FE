@@ -1,6 +1,6 @@
 import React from 'react';
 
-function MedicalExamination({ medicalExamination }) {
+function MedicalExamination({ medicalExaminations }) {
   return (
     <ul>
       {medicalExaminations.map(medicalExamination => (

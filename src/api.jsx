@@ -1,5 +1,19 @@
 import axios from "axios";
 
+export const findAllPatientMedicalExamination = async (userId) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/medExamination/patient/${userId}`)
+    return response.data;
+}
+
+export const findPersonIdByUserEmail = async (email) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/user/find/${email}`)
+    const userId = parseInt(response.data);
+    if (isNaN(userId)) {
+        throw new Error('Invalid person ID');
+    }
+    return userId;
+}
+
 export const authenticatePatient = async (email, password) => {
 
     const response = await axios.post('http://localhost:8080/api/auth/authentication/patient',
@@ -8,6 +22,7 @@ export const authenticatePatient = async (email, password) => {
         "password": `${password}`,
     });
     localStorage.setItem("token",response.data.access_token);
+    
 }
 
 export const authenticateDoctor = async (email, password) => {
@@ -18,6 +33,7 @@ export const authenticateDoctor = async (email, password) => {
         "password": `${password}`,
     });
     localStorage.setItem("token",response.data.access_token);
+
 }
 
 export const authenticateAdmin = async (email, password) => {

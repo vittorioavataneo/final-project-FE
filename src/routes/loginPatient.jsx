@@ -1,5 +1,5 @@
 import { Form, useNavigate  } from "react-router-dom";
-import { authenticatePatient } from "../api";
+import { authenticatePatient, findPersonIdByUserEmail } from "../api";
 import { useState } from "react";
 import "../index.css";
 
@@ -11,8 +11,10 @@ export default function LoginPatient() {
 
     function handleSubmit(){
         authenticatePatient(email, password)
-        .then(() => {
-            navigate(`/patient/1`);
+        .then(() => findPersonIdByUserEmail(email))
+        .then((userId) => {
+            setUserId(userId);
+            navigate(`/patient/${userId}`);
         })
         .catch((error) => {
             console.error(error);
