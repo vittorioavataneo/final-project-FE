@@ -1,21 +1,22 @@
 import { Form, useNavigate  } from "react-router-dom";
-import { authenticate } from "../api";
+import { authenticatePatient } from "../api";
 import { useState } from "react";
 import "../index.css";
 
-export default function Login() {
+export default function LoginPatient() {
     const[email, setEmail] = useState("");
     const[password, setPassword] = useState("");
     const[userId, setUserId] = useState(null);
     const navigate = useNavigate();
 
     function handleSubmit(){
-        authenticate(email, password).then((response) => {
-            setUserId(response.data.user.id); 
-            navigate(`/patient/${userId}`);
+        authenticatePatient(email, password)
+        .then(() => {
+            navigate(`/patient/1`);
         })
         .catch((error) => {
             console.error(error);
+            navigate('/loginError');
         });
     }
 

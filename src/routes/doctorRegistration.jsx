@@ -3,12 +3,11 @@ import { Form } from "react-router-dom";
 import { registerDoctor } from "../api";
 
 export default function DoctorRegistration() {
-    const[firstname, setFirstname] = useState("");
+        const[firstname, setFirstname] = useState("");
         const[lastname, setLastname] = useState("");
         const[dob, setDob] = useState("");
         const[email, setEmail] = useState("");
         const[password, setPassword] = useState("");
-        const[taxCode, setTaxCode] = useState("");
         const[cellNumber, setCellNumber] = useState("");
         const[sex, setSex] = useState("");
         const[street, setStreet]= useState("");
@@ -17,13 +16,13 @@ export default function DoctorRegistration() {
         const[province,setProvince]=useState("");
         const[country,setCountry]=useState("");
         const[doctorCode, setDoctorCode]=useState("");
-        const[specialization,setSpecialization]=useState("");
+        const[specializationName, setSpecializationName]=useState("");
         
 
         function handleSubmit(){
-            registerDoctor(firstname,lastname,dob,email,password,
-                            taxCode,cellNumber,sex,address,doctorCode,specialization)
+            registerDoctor(firstname, lastname, dob, cellNumber, sex, email, password, doctorCode, specializationName, street, cap, city, province, country)
         }
+
         function changeFirstname(e){
             setFirstname(e.target.value);
         }
@@ -44,10 +43,6 @@ export default function DoctorRegistration() {
             setPassword(e.target.value);
         }
 
-        function changeTaxCode(e){
-            setTaxCode(e.target.value);
-        }
-
         function changeCellNumber(e){
             setCellNumber(e.target.value);
         }
@@ -55,27 +50,31 @@ export default function DoctorRegistration() {
         function changeSex(e){
             setSex(e.target.value);
         }
-        function changeAddress(e){
-            setAddress(e.target.value);
-        }
+
         function changeDoctorCode(e){
             setDoctorCode(e.target.value);
         }
-        function changeSpecialization(e){
-            setSpecialization(e.target.value);
+
+        function changeSpecializationName(e){
+            setSpecializationName(e.target.value);
         }
+
         function changeStreet(e){
             setStreet(e.target.value);
         }
+
         function changeCap(e){
             setCap(e.target.value);
         }
+
         function changeCity(e){
             setCity(e.target.value);
         }
+
         function changeProvince(e){
             setProvince(e.target.value);
         }
+        
         function changeCountry(e){
             setCountry(e.target.value);
         }
@@ -108,7 +107,7 @@ export default function DoctorRegistration() {
                     </label>
                     <label>
                         Data di Nascita:
-                        <input type="text" value={dob} onChange={changeDob} required />
+                        <input type="date" value={dob} onChange={changeDob} required />
                     </label>
                     <label>
                         Sesso:
@@ -120,14 +119,14 @@ export default function DoctorRegistration() {
                     </label>
                     <label>
                         Specializzazione:
-                        <input type="text" value={specialization} onChange={changeSpecialization} required />
+                        <input type="text" value={specializationName} onChange={changeSpecializationName} required />
                     </label>
                     <label>
                         Numero di Telefono:
-                        <input type="text" value={cellNumber} onChange={changeCellNumber} required/>
+                        <input type="text" value={cellNumber} onChange={changeCellNumber} minLength={10} maxLength={10} required/>
                     </label>
                     <label>
-                        Indirizzo:
+                        Via:
                         <input type="text" value={street} onChange={changeStreet} required />
                     </label>
                     <label>
@@ -140,7 +139,7 @@ export default function DoctorRegistration() {
                     </label>
                     <label>
                         CAP:
-                        <input type="text" value={cap} onChange={changeCap} required />
+                        <input type="text" value={cap} onChange={changeCap} minLength={5} maxLength={5} required />
                     </label>
                     <label>
                         Stato:

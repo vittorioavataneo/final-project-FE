@@ -6,7 +6,7 @@ export default function PatientPage() {
     return (
         <>
         <div>
-            <h1>Benvenuto, utente {userId}</h1>
+            <h1>Benvenuto, utente </h1>
         </div>
         </>
     );

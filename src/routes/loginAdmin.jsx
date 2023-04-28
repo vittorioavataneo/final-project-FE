@@ -1,5 +1,5 @@
 import { Form, useNavigate  } from "react-router-dom";
-import { authenticate } from "../api";
+import { authenticateAdmin } from "../api";
 import { useState } from "react";
 import "../index.css";
 
@@ -10,12 +10,12 @@ export default function LoginAdmin() {
     const navigate = useNavigate();
 
     function handleSubmit(){
-        authenticate(email, password).then((response) => {
-            setUserId(response.data.user.id); 
-            navigate(`/patient/${userId}`);
+        authenticateAdmin(email, password).then((response) => {
+            navigate(`/patient/1`);
         })
         .catch((error) => {
             console.error(error);
+            navigate('/loginError');
         });
     }
 
