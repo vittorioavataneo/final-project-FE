@@ -1,13 +1,13 @@
 import { Form, useParams } from "react-router-dom";
-import { useState } from "react";
-import { createNewExamination } from "../api";
+import { useState, useEffect } from "react";
+import { createNewExamination, findDoctorBySpecialization, findPatientById, findSpecializationByName, findDoctorById } from "../api";
 
 export default function ExaminationForm(){
 
     const { userId } = useParams();
 
-    const[patientName, setPatientName] = useState("")
-    const[doctorName, setDoctorName] = useState("");
+    const[patient, setPatient] = useState({});
+    const[doctor, setDoctor] = useState({});
     const[reservationDate, setReservationDate] = useState("");
     const[contact, setContact] = useState("");
     const[specializationName, setSpecializationName] = useState("");
@@ -15,19 +15,68 @@ export default function ExaminationForm(){
     const[examinationPackage, setExaminationPackage] = useState("");
     const[note, setNote] = useState("");
     const[paymentNote, setPaymentNote] = useState(""); 
-    const[billing, setBilling] = useState();
+    const[billing, setBilling] = useState(true);
     const[state, setState] = useState("DA_PROGRAMMARE");
+    const[specialization, setSpecialization] = useState({}); 
+    const[doctorList, setDoctorList] = useState([]);
+    const[doctorId, setDoctorId] = useState("");
 
     function handleSubmit(){
-        createNewExamination(doctorName, patientName, reservationDate, contact, specializationName, payment, examinationPackage, note, paymentNote, billing, state);
+        createNewExamination(
+            doctor, 
+            patient, 
+            reservationDate,
+            contact, 
+            specialization, 
+            payment, 
+            examinationPackage, 
+            note, 
+            paymentNote, 
+            billing, 
+            state
+        );
     }
 
-    function changePatientName(e){
-        setPatientName(e.target.value);
+    useEffect(()=>{
+        async function fetchPatient(){
+            const pat = await findPatientById(userId);
+            setPatient(pat);
+        }
+
+        fetchPatient()
+    }, [userId]);
+
+
+    useEffect(()=>{
+        async function fetchSpecialization(){
+            const sp = await findSpecializationByName(specializationName);
+            setSpecialization(sp);
+        }
+
+        if (specializationName !== "") {
+            fetchSpecialization();
+        }
+    }, [specializationName]);
+
+
+    useEffect(()=>{
+        async function fetchDoctor(){
+            const did = await findDoctorById(doctorId);
+            setDoctor(did);
+            console.log(JSON.stringify(doctor));
+        }
+
+        if ( doctorId !== "") {
+            fetchDoctor();
+          }
+    }, [doctorId]);
+
+    function changePatient(e){
+        setPatient(e.target.value);
     }
 
-    function changeDoctorName(e){
-        setDoctorName(e.target.value);
+    function changeDoctor(e) {
+        setDoctor(e.target.value);
     }
 
     function changeReservationDate(e){
@@ -59,12 +108,27 @@ export default function ExaminationForm(){
     }
 
     function changeBilling(e){
-        setBilling(e.target.value);
+        setBilling(e.target.checked);
     }
 
     function changeState(e){
         setState(e.target.value);
     }
+
+    function changeDoctorId(e) {
+        setDoctorId(e.target.value);
+    }
+
+    useEffect(() => {
+        async function fetchDoctors() {
+          const doctors = await findDoctorBySpecialization(specializationName);
+          setDoctorList(doctors);
+        }
+    
+        if (specializationName !== "") {
+          fetchDoctors();
+        }
+    }, [specializationName]);
 
     return (
         <>
@@ -73,7 +137,17 @@ export default function ExaminationForm(){
                 <Form onSubmit={handleSubmit}>
                     <label>
                         Tipo di Visita:
-                        <input type="date" value={specializationName} onChange={changeSpecializationName} required/>
+                        <input type="text" value={specializationName} onChange={changeSpecializationName} required/>
+                    </label>
+                    <label>
+                        Dottore:
+                        <select value={doctorId} onChange={changeDoctorId} required>
+                            {doctorList.map((doctor) => (
+                            <option key={doctor.id} value={doctor.id}>
+                                {doctor.firstname} {doctor.lastname}
+                            </option>
+                            ))}
+                        </select>
                     </label>
                     <label>
                         Data:
@@ -83,6 +157,7 @@ export default function ExaminationForm(){
                         Tipo di contatto:
                         <select value={contact} onChange={changeContact} required>
                             <option value="INTERVISTA">INTERVISTA</option>
+                            <option value="VISITA">VISITA</option>
                         </select>
                     </label>
                     <label>
@@ -93,7 +168,6 @@ export default function ExaminationForm(){
                             <option value="PAYPAL">PAYPAL</option>
                             <option value="CARTA_DI_CREDITO_O_DEBITO">CARTA_DI_CREDITO_O_DEBITO</option>
                             <option value="CONTANTI">CONTANTI</option>
-
                         </select>
                     </label>
                     <label>
@@ -106,15 +180,15 @@ export default function ExaminationForm(){
                     </label>
                     <label>
                         Note:
-                        <input type="text" value={note} onChange={changeNote} required/>
+                        <input type="text" value={note} onChange={changeNote} />
                     </label>
                     <label>
                         Note Pagamento:
-                        <input type="text" value={paymentNote} onChange={changePaymentNote} required/>
+                        <input type="text" value={paymentNote} onChange={changePaymentNote} />
                     </label>
                     <label>
                         Fatturazione:
-                        <input type="checkbox" value={billing} onChange={changeBilling}/>
+                        <input type="checkbox" checked={billing} onChange={changeBilling}/>
                     </label>
                     <button type="submit">Invia richiesta</button>
                 </Form>

@@ -1,13 +1,33 @@
 import axios from "axios";
 
-export const createNewExamination = async(doctorName, patientName, reservationDate, contact, specializationName, payment, examinationPackage, note, paymentNote, billing, state) =>{
+export const findDoctorById = async (doctorId) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/doctor/find/${doctorId}`)
+    return response.data;
+}
+
+export const findPatientById = async (userId) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/patient/find/patient/${userId}`)
+    return response.data;
+}
+
+export const findDoctorBySpecialization = async(specializationName) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/doctor/find/specializationDoctor/${specializationName}`)
+    return response.data;
+}
+
+export const findSpecializationByName = async(specializationName) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/specialization/find/${specializationName}`)
+    return response.data;
+}
+
+export const createNewExamination = async(doctor, patient, reservationDate, contact, specialization, payment, examinationPackage, note, paymentNote, billing, state) =>{
     const response = await axios.post('http://localhost:8080/api/auth/medExamination',
     {
-        "doctorName": `${doctorName}`,
-        "patientName": `${patientName}`,
+        "doctorDto": doctor,
+        "patientDto": patient,
         "reservationDate": `${reservationDate}`,
         "contact": `${contact}`,
-        "specializationName": `${specializationName}`,
+        "specializationDto": specialization,
         "payment": `${payment}`,
         "examinationPackage": `${examinationPackage}`,
         "note": `${note}`,
