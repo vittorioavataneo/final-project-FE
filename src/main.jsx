@@ -5,12 +5,15 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
-import LandingPage from "./routes/landingPage";
-import Login from "./routes/login";
-import Navbar from "./components/navbar.jsx";
+import Login from "./routes/loginPatient";
 import DoctorRegistration from "./routes/doctorRegistration";
 import PatientRegistration from "./routes/patientRegistration";
 import Root from "./routes/root";
+import PatientPage from "./routes/patientPage";
+import LoginPatient from "./routes/loginPatient";
+import LoginDoctor from "./routes/loginDoctor";
+import LoginAdmin from "./routes/loginAdmin";
+import ErrorPage from "./error-page";
 
 const router = createBrowserRouter([
     {
@@ -19,15 +22,15 @@ const router = createBrowserRouter([
       children: [
         {
           path: "/patientLogin",
-          element: <Login/>,
+          element: <LoginPatient/>,
         },
         {
           path: "/doctorLogin",
-          element: <Login/>,
+          element: <LoginDoctor/>,
         },
         {
           path: "/adminLogin",
-          element: <Login/>,
+          element: <LoginAdmin/>,
         },
         {
           path: "/doctorRegistration",
@@ -36,11 +39,18 @@ const router = createBrowserRouter([
         {
           path: "/patientRegistration",
           element: <PatientRegistration/>
-        }
+        },
+        {
+          path: "/loginError",
+          element: <ErrorPage/>
+        },
       ]
     },
+    {
+      path: '/patient/:userId',
+      element: <PatientPage/>
+    },
     
-  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
