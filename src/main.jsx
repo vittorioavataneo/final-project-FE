@@ -5,7 +5,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
-import Login from "./routes/loginPatient";
 import DoctorRegistration from "./routes/doctorRegistration";
 import PatientRegistration from "./routes/patientRegistration";
 import Root from "./routes/root";
@@ -14,6 +13,7 @@ import LoginPatient from "./routes/loginPatient";
 import LoginDoctor from "./routes/loginDoctor";
 import LoginAdmin from "./routes/loginAdmin";
 import ErrorPage from "./error-page";
+import MedicalExamination, {loader as examinationLoader} from "./routes/medicalExamination";
 
 const router = createBrowserRouter([
     {
@@ -48,7 +48,14 @@ const router = createBrowserRouter([
     },
     {
       path: '/patient/:userId',
-      element: <PatientPage/>
+      element: <PatientPage/>,
+      children:[
+        {
+          path: '/patient/:userId/examination/:examinationId',
+          element: <MedicalExamination/>,
+          loader: examinationLoader
+        }
+      ]
     },
     
 ]);

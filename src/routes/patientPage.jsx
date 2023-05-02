@@ -1,5 +1,6 @@
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useParams, NavLink } from 'react-router-dom';
 import { useState, useEffect } from "react";
+import { findAllPatientMedicalExamination } from "../api"; 
 
 export default function PatientPage() {
     const { userId } = useParams();
@@ -14,12 +15,17 @@ export default function PatientPage() {
             console.error(error);
         }
     }
-
     fetchMedicalExaminations();
     }, [userId]);
 
     return (
         <>
+        <nav className="navbar">
+            <NavLink to="/">
+                Home
+            </NavLink>
+        </nav>
+        
         <div id="sidebar">
             <h1>Benvenuto, utente {userId}</h1>
             <h3>Cronologia Visite Mediche</h3>
@@ -28,8 +34,10 @@ export default function PatientPage() {
                 <ul>
                 {medicalExaminations.map((examination) => (
                     <li key={examination.id}>
-                        <NavLink >
-                            
+                        <NavLink 
+                            to={`/patient/${userId}/examination/${examination.id}`}
+                        >
+                            {examination.reservationDate}
                         </NavLink>
                     </li>
                     ))
@@ -41,7 +49,7 @@ export default function PatientPage() {
                     </p>
                 )
             }
-          </nav>
+            </nav>
             
         </div>
         <div id="detail">

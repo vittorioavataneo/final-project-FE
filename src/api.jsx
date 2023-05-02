@@ -5,6 +5,11 @@ export const findAllPatientMedicalExamination = async (userId) =>{
     return response.data;
 }
 
+export const findExaminationById = async (examinationId) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/medExamination/find/${examinationId}`)
+    return response.data;
+}
+
 export const findPersonIdByUserEmail = async (email) =>{
     const response = await axios.get(`http://localhost:8080/api/auth/user/find/${email}`)
     const userId = parseInt(response.data);
