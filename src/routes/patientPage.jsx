@@ -1,10 +1,11 @@
-import { Outlet, useParams, NavLink } from 'react-router-dom';
+import { Outlet, useParams, NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { findAllPatientMedicalExamination } from "../api"; 
 
 export default function PatientPage() {
     const { userId } = useParams();
     const [medicalExaminations, setMedicalExaminations] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
     async function fetchMedicalExaminations() {
@@ -18,16 +19,21 @@ export default function PatientPage() {
     fetchMedicalExaminations();
     }, [userId]);
 
+    function changePage(){
+        navigate(`/patient/${userId}/createExamination`);
+    }
+
     return (
         <>
         <nav className="navbar">
             <NavLink to="/">
-                Home
+                Home/Logout
             </NavLink>
         </nav>
         
         <div id="sidebar">
             <h1>Benvenuto, utente {userId}</h1>
+            <button onClick={changePage} >Prenota Visita</button>
             <h3>Cronologia Visite Mediche</h3>
             <nav>
             {medicalExaminations.length ? (

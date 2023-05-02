@@ -1,5 +1,23 @@
 import axios from "axios";
 
+export const createNewExamination = async(doctorName, patientName, reservationDate, contact, specializationName, payment, examinationPackage, note, paymentNote, billing, state) =>{
+    const response = await axios.post('http://localhost:8080/api/auth/medExamination',
+    {
+        "doctorName": `${doctorName}`,
+        "patientName": `${patientName}`,
+        "reservationDate": `${reservationDate}`,
+        "contact": `${contact}`,
+        "specializationName": `${specializationName}`,
+        "payment": `${payment}`,
+        "examinationPackage": `${examinationPackage}`,
+        "note": `${note}`,
+        "paymentNote": `${paymentNote}`,
+        "billing": `${billing}`,
+        "state": `${state}`,
+    });
+
+}
+
 export const findAllPatientMedicalExamination = async (userId) =>{
     const response = await axios.get(`http://localhost:8080/api/auth/medExamination/patient/${userId}`)
     return response.data;

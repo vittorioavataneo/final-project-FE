@@ -14,6 +14,7 @@ import LoginDoctor from "./routes/loginDoctor";
 import LoginAdmin from "./routes/loginAdmin";
 import ErrorPage from "./error-page";
 import MedicalExamination, {loader as examinationLoader} from "./routes/medicalExamination";
+import ExaminationForm from "./routes/examinationForm";
 
 const router = createBrowserRouter([
     {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
           path: '/patient/:userId/examination/:examinationId',
           element: <MedicalExamination/>,
           loader: examinationLoader
+        },
+        {
+          path: '/patient/:userId/createExamination',
+          element: <ExaminationForm/>
         }
       ]
     },
