@@ -1,8 +1,8 @@
 import { Outlet, useParams, NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
-import { findAllPatientMedicalExamination } from "../api"; 
+import { findAllDoctorMedicalExamination } from "../api"; 
 
-export default function PatientPage() {
+export default function DoctorExaminationPage() {
     const { userId } = useParams();
     const [medicalExaminations, setMedicalExaminations] = useState([]);
     const navigate = useNavigate();
@@ -10,7 +10,7 @@ export default function PatientPage() {
     useEffect(() => {
     async function fetchMedicalExaminations() {
         try {
-            const medicalExams = await findAllPatientMedicalExamination(userId);
+            const medicalExams = await findAllDoctorMedicalExamination(userId);
             setMedicalExaminations(medicalExams);
         } catch (error) {
             console.error(error);
@@ -20,20 +20,14 @@ export default function PatientPage() {
     }, [userId]);
 
     function changePage(){
-        navigate(`/patient/${userId}/createExamination`);
+        navigate(`/doctor/${userId}/createExamination`);
     }
 
     return (
         <>
-        <nav className="navbar">
-            <NavLink to="/">
-                Home/Logout
-            </NavLink>
-        </nav>
-        
         <div id="sidebar">
             <h1>Benvenuto, utente {userId}</h1>
-            <button onClick={changePage} >Prenota Visita</button>
+            <button onClick={changePage}>Aggiungi Visita</button>
             <h3>Cronologia Visite Mediche</h3>
             <nav>
             {medicalExaminations.length ? (
@@ -41,7 +35,7 @@ export default function PatientPage() {
                 {medicalExaminations.map((examination) => (
                     <li key={examination.id}>
                         <NavLink 
-                            to={`/patient/${userId}/examination/${examination.id}`}
+                            to={`/doctor/${userId}/examination/${examination.id}`}
                         >
                             {examination.reservationDate}
                         </NavLink>

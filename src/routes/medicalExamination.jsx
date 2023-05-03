@@ -1,24 +1,39 @@
-import React from 'react';
+import { useLoaderData } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { findExaminationById } from "../api"; 
 
-function MedicalExamination({ medicalExaminations }) {
+export async function loader({ params }) {
+  const examination = await findExaminationById(params.examinationId);
+  if (!examination) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
+  return { examination };
+}
+
+function MedicalExamination() {
+  const { examination } = useLoaderData();
+
   return (
-    <ul>
-      {medicalExaminations.map(medicalExamination => (
-        <li key={medicalExamination.id}>
-          <div>{medicalExamination.billing}</div>
-          <div>{medicalExamination.doctor}</div>
-          <div>{medicalExamination.patient}</div>
-          <div>{medicalExamination.reservationDate}</div>
-          <div>{medicalExamination.contact}</div>
-          <div>{medicalExamination.specialization}</div>
-          <div>{medicalExamination.payment}</div>
-          <div>{medicalExamination.paymentNote}</div>
-          <div>{medicalExamination.examinationPackage}</div>
-          <div>{medicalExamination.note}</div>
-          <div>{medicalExamination.state}</div>     
-        </li>
-      ))}
+    examination ? (
+    <ul key={examination.id}>
+          <li>{examination.doctorName}</li>
+          <li>{examination.patientName}</li>
+          <li>{examination.reservationDate}</li>
+          <li>{examination.contact}</li>
+          <li>{examination.specialization}</li>
+          <li>{examination.payment}</li>
+          <li>{examination.examinationPackage}</li>
+          <li>{examination.note}</li>
+          <li>{examination.paymentNote}</li>
+          <li>{examination.billing}</li>
+          <li>{examination.state}</li>     
     </ul>
+    ) : (
+      <div>Loading...</div>
+    )
   );
 }
 

@@ -1,7 +1,60 @@
 import axios from "axios";
 
+export const findDoctorById = async (doctorId) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/doctor/find/${doctorId}`)
+    return response.data;
+}
+
+export const findPatientById = async (userId) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/patient/find/patient/${userId}`)
+    return response.data;
+}
+
+export const findDoctorBySpecialization = async(specializationName) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/doctor/find/specializationDoctor/${specializationName}`)
+    return response.data;
+}
+
+export const findSpecializationByName = async(specializationName) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/specialization/find/${specializationName}`)
+    return response.data;
+}
+
+export const createNewExamination = async(doctor, patient, reservationDate, contact, specialization, payment, examinationPackage, note, paymentNote, billing, state) =>{
+    const response = await axios.post('http://localhost:8080/api/auth/medExamination',
+    {
+        "doctorDto": doctor,
+        "patientDto": patient,
+        "reservationDate": `${reservationDate}`,
+        "contact": `${contact}`,
+        "specializationDto": specialization,
+        "payment": `${payment}`,
+        "examinationPackage": `${examinationPackage}`,
+        "note": `${note}`,
+        "paymentNote": `${paymentNote}`,
+        "billing": `${billing}`,
+        "state": `${state}`,
+    });
+
+}
+
 export const findAllPatientMedicalExamination = async (userId) =>{
     const response = await axios.get(`http://localhost:8080/api/auth/medExamination/patient/${userId}`)
+    return response.data;
+}
+
+export const findAllDoctorMedicalExamination = async (userId) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/medExamination/doctor/${userId}`)
+    return response.data;
+}
+
+export const findExaminationById = async (examinationId) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/medExamination/find/${examinationId}`)
+    return response.data;
+}
+
+export const findAllPatientByDoctorId = async (userId) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/patient/find/patientOfDoctor/${userId}`)
     return response.data;
 }
 

@@ -73,6 +73,7 @@ export default function PatientRegistration() {
                     <label>
                         Sesso:
                         <select value={sex} onChange={changeSex} required>
+                            <option>---</option>
                             <option value="UOMO">UOMO</option>
                             <option value="DONNA">DONNA</option>
                             <option value="NON_BINARIO">NON_BINARIO</option>

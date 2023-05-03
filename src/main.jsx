@@ -5,7 +5,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
-import Login from "./routes/loginPatient";
 import DoctorRegistration from "./routes/doctorRegistration";
 import PatientRegistration from "./routes/patientRegistration";
 import Root from "./routes/root";
@@ -14,6 +13,11 @@ import LoginPatient from "./routes/loginPatient";
 import LoginDoctor from "./routes/loginDoctor";
 import LoginAdmin from "./routes/loginAdmin";
 import ErrorPage from "./error-page";
+import MedicalExamination, {loader as examinationLoader} from "./routes/medicalExamination";
+import ExaminationForm from "./routes/examinationForm";
+import DoctorPage from "./routes/doctorPage"
+import DoctorPatientPage from "./routes/doctorPatientPage";
+import DoctorExaminationPage from "./routes/doctorExaminationPage";
 
 const router = createBrowserRouter([
     {
@@ -48,8 +52,42 @@ const router = createBrowserRouter([
     },
     {
       path: '/patient/:userId',
-      element: <PatientPage/>
+      element: <PatientPage/>,
+      children:[
+        {
+          path: '/patient/:userId/examination/:examinationId',
+          element: <MedicalExamination/>,
+          loader: examinationLoader
+        },
+        {
+          path: '/patient/:userId/createExamination',
+          element: <ExaminationForm/>
+        }
+      ]
     },
+    {
+      path: '/doctor/:userId',
+      element: <DoctorPage/>,
+      children:[
+        {
+          path: '/doctor/:userId/examination/:examinationId',
+          element: <MedicalExamination/>,
+          loader: examinationLoader
+        },
+        {
+          path: '/doctor/:userId/createExamination',
+          element: <ExaminationForm/>
+        },
+        {
+          path: '/doctor/:userId/examinations',
+          element: <DoctorExaminationPage/>
+        },
+        {
+          path: '/doctor/:userId/patients',
+          element: <DoctorPatientPage/>
+        }
+      ]
+    }
     
 ]);
 
