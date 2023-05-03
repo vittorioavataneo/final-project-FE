@@ -3,6 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 export default function LandingPage() {
     return (
         <>
+        
             <div id="sidebar">
                 <h1>Progetto Medici - General Login</h1>
                 <nav>
