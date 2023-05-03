@@ -43,8 +43,18 @@ export const findAllPatientMedicalExamination = async (userId) =>{
     return response.data;
 }
 
+export const findAllDoctorMedicalExamination = async (userId) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/medExamination/doctor/${userId}`)
+    return response.data;
+}
+
 export const findExaminationById = async (examinationId) =>{
     const response = await axios.get(`http://localhost:8080/api/auth/medExamination/find/${examinationId}`)
+    return response.data;
+}
+
+export const findAllPatientByDoctorId = async (userId) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/patient/find/patientOfDoctor/${userId}`)
     return response.data;
 }
 

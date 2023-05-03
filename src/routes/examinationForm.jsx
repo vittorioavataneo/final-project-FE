@@ -142,6 +142,7 @@ export default function ExaminationForm(){
                     <label>
                         Dottore:
                         <select value={doctorId} onChange={changeDoctorId} required>
+                            <option>---</option>
                             {doctorList.map((doctor) => (
                             <option key={doctor.id} value={doctor.id}>
                                 {doctor.firstname} {doctor.lastname}
@@ -156,13 +157,14 @@ export default function ExaminationForm(){
                     <label>
                         Tipo di contatto:
                         <select value={contact} onChange={changeContact} required>
+                            <option>---</option>
                             <option value="INTERVISTA">INTERVISTA</option>
-                            <option value="VISITA">VISITA</option>
                         </select>
                     </label>
                     <label>
                         Pagamento:
                         <select value={payment} onChange={changePayment} required>
+                            <option>---</option>
                             <option value="BONIFICO">BONIFICO</option>
                             <option value="SATISPAY">SATISPAY</option>
                             <option value="PAYPAL">PAYPAL</option>
@@ -173,6 +175,7 @@ export default function ExaminationForm(){
                     <label>
                         Pacchetto:
                         <select value={examinationPackage} onChange={changeExaminationPackage} required>
+                            <option>---</option>
                             <option value="CORPO_MENTE">CORPO_MENTE</option>
                             <option value="CORPO">CORPO</option>
                             <option value="MENTE">MENTE</option>
