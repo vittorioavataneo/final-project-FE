@@ -1,4 +1,5 @@
 import { Outlet, useParams, NavLink } from 'react-router-dom';
+import IndexPage from './index';
 
 export default function DoctorPage() {
     const { userId } = useParams();
@@ -19,6 +20,7 @@ export default function DoctorPage() {
         <div>
             <Outlet/>
         </div>
+    
         </>
     );
 }
