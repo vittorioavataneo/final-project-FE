@@ -72,6 +72,16 @@ export const findExaminationById = async (examinationId) =>{
     return response.data;
 }
 
+export const changeExaminationToAnnulled = async (examinationId) =>{
+    const response = await axios.post(`http://localhost:8080/api/auth/medExamination/null/${examinationId}`)
+    return response.data;
+}
+
+export const changeExaminationToProgrammed = async (examinationId) =>{
+    const response = await axios.post(`http://localhost:8080/api/auth/medExamination/programmed/${examinationId}`)
+    return response.data;
+}
+
 //AUTHENTICATE
 export const authenticatePatient = async (email, password) => {
 

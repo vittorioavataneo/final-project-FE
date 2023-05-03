@@ -23,11 +23,9 @@ export default function PatientDetails() {
 
     return (
         <>
-            
             <div>
-                <h1>Dettagli Prenotazioni Dottore: {userId}</h1>
+                <h1>Dettagli Paziente</h1>
                 <div>
-                    <h3>Dettagli Paziente</h3>
                     <ul>
                         <li>{patient.firstname}</li>
                         <li>{patient.lastname}</li>
