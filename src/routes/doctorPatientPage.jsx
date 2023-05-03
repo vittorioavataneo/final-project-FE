@@ -22,6 +22,18 @@ export default function DoctorPatientPage() {
     return (
         <>
     
+        <nav className="navbar">
+            <NavLink to="/">
+                Home/Logout
+            </NavLink>
+            <NavLink to={`/doctor/${userId}/patients`}>
+                Pazienti
+            </NavLink>
+            <NavLink to={`/doctor/${userId}/examinations`}>
+                Visite Mediche
+            </NavLink>
+        </nav>
+
         <div id="sidebar">
             <h1>Benvenuto, utente {userId}</h1>
             <h3>Pazienti</h3>
@@ -31,7 +43,7 @@ export default function DoctorPatientPage() {
                 {patients.map((patient) => (
                     <li key={patient.id}>
                         <NavLink 
-                            to={`/doctor/${userId}/patient/${patient.id}`}
+                            to={`/doctor/${userId}/patients/${patient.id}`}
                         >
                             {patient.firstname} {patient.lastname}
                         </NavLink>

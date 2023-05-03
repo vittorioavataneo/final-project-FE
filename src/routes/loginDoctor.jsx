@@ -14,7 +14,7 @@ export default function LoginDoctor() {
         .then(() => findPersonIdByUserEmail(email))
         .then((userId) => {
             setUserId(userId);
-            navigate(`/doctor/${userId}`);
+            navigate(`/doctor/${userId}/examinations`);
         })
         .catch((error) => {
             console.error(error);

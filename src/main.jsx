@@ -15,9 +15,9 @@ import LoginAdmin from "./routes/loginAdmin";
 import ErrorPage from "./error-page";
 import MedicalExamination, {loader as examinationLoader} from "./routes/medicalExamination";
 import ExaminationForm from "./routes/examinationForm";
-import DoctorPage from "./routes/doctorPage"
 import DoctorPatientPage from "./routes/doctorPatientPage";
 import DoctorExaminationPage from "./routes/doctorExaminationPage";
+import PatientDetails, {loader as patientLoader}from "./routes/patientDetails";
 
 const router = createBrowserRouter([
     {
@@ -66,29 +66,37 @@ const router = createBrowserRouter([
       ]
     },
     {
-      path: '/doctor/:userId',
-      element: <DoctorPage/>,
+      path: '/doctor/:userId/examinations',
+      element: <DoctorExaminationPage/>,
       children:[
         {
-          path: '/doctor/:userId/examination/:examinationId',
+          path: '/doctor/:userId/examinations/:examinationId',
           element: <MedicalExamination/>,
           loader: examinationLoader
         },
         {
-          path: '/doctor/:userId/createExamination',
+          path: '/doctor/:userId/examinations/createExamination',
           element: <ExaminationForm/>
         },
+      ]
+    },
+    {
+      path: '/doctor/:userId/patients',
+      element: <DoctorPatientPage/>,
+      children:[
         {
-          path: '/doctor/:userId/examinations',
-          element: <DoctorExaminationPage/>
+          path: '/doctor/:userId/patients/:patientId',
+          element: <PatientDetails/>,
+          loader: patientLoader
         },
         {
-          path: '/doctor/:userId/patients',
-          element: <DoctorPatientPage/>
+          path:'/doctor/:userId/patients/:patientId/examination/:examinationId',
+          element: <MedicalExamination/>,
+          loader: examinationLoader
         }
       ]
-    }
-    
+    },
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

@@ -20,11 +20,23 @@ export default function DoctorExaminationPage() {
     }, [userId]);
 
     function changePage(){
-        navigate(`/doctor/${userId}/createExamination`);
+        navigate(`/doctor/${userId}/examinations/createExamination`);
     }
 
     return (
         <>
+        <nav className="navbar">
+            <NavLink to="/">
+                Home/Logout
+            </NavLink>
+            <NavLink to={`/doctor/${userId}/patients`}>
+                Pazienti
+            </NavLink>
+            <NavLink to={`/doctor/${userId}/examinations`}>
+                Visite Mediche
+            </NavLink>
+        </nav>
+        
         <div id="sidebar">
             <h1>Benvenuto, utente {userId}</h1>
             <button onClick={changePage}>Aggiungi Visita</button>
@@ -35,7 +47,7 @@ export default function DoctorExaminationPage() {
                 {medicalExaminations.map((examination) => (
                     <li key={examination.id}>
                         <NavLink 
-                            to={`/doctor/${userId}/examination/${examination.id}`}
+                            to={`/doctor/${userId}/examinations/${examination.id}`}
                         >
                             {examination.reservationDate}
                         </NavLink>

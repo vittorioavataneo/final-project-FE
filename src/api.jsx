@@ -1,12 +1,17 @@
 import axios from "axios";
 
-export const findDoctorById = async (doctorId) =>{
-    const response = await axios.get(`http://localhost:8080/api/auth/doctor/find/${doctorId}`)
-    return response.data;
+export const findPersonIdByUserEmail = async (email) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/user/find/${email}`)
+    const userId = parseInt(response.data);
+    if (isNaN(userId)) {
+        throw new Error('Invalid person ID');
+    }
+    return userId;
 }
 
-export const findPatientById = async (userId) =>{
-    const response = await axios.get(`http://localhost:8080/api/auth/patient/find/patient/${userId}`)
+//DOTTORE
+export const findDoctorById = async (doctorId) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/doctor/find/${doctorId}`)
     return response.data;
 }
 
@@ -15,11 +20,25 @@ export const findDoctorBySpecialization = async(specializationName) =>{
     return response.data;
 }
 
+//PAZIENTE
+export const findPatientById = async (userId) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/patient/find/patient/${userId}`)
+    return response.data;
+}
+
+export const findAllPatientByDoctorId = async (userId) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/patient/find/patientOfDoctor/${userId}`)
+    return response.data;
+}
+
+//SPECIALIZATION
 export const findSpecializationByName = async(specializationName) =>{
     const response = await axios.get(`http://localhost:8080/api/auth/specialization/find/${specializationName}`)
     return response.data;
 }
 
+
+//EXAMINATION
 export const createNewExamination = async(doctor, patient, reservationDate, contact, specialization, payment, examinationPackage, note, paymentNote, billing, state) =>{
     const response = await axios.post('http://localhost:8080/api/auth/medExamination',
     {
@@ -53,20 +72,17 @@ export const findExaminationById = async (examinationId) =>{
     return response.data;
 }
 
-export const findAllPatientByDoctorId = async (userId) =>{
-    const response = await axios.get(`http://localhost:8080/api/auth/patient/find/patientOfDoctor/${userId}`)
+export const changeExaminationToAnnulled = async (examinationId) =>{
+    const response = await axios.post(`http://localhost:8080/api/auth/medExamination/null/${examinationId}`)
     return response.data;
 }
 
-export const findPersonIdByUserEmail = async (email) =>{
-    const response = await axios.get(`http://localhost:8080/api/auth/user/find/${email}`)
-    const userId = parseInt(response.data);
-    if (isNaN(userId)) {
-        throw new Error('Invalid person ID');
-    }
-    return userId;
+export const changeExaminationToProgrammed = async (examinationId) =>{
+    const response = await axios.post(`http://localhost:8080/api/auth/medExamination/programmed/${examinationId}`)
+    return response.data;
 }
 
+//AUTHENTICATE
 export const authenticatePatient = async (email, password) => {
 
     const response = await axios.post('http://localhost:8080/api/auth/authentication/patient',
@@ -99,6 +115,7 @@ export const authenticateAdmin = async (email, password) => {
     localStorage.setItem("token",response.data.access_token);
 }
 
+//REGISTRATION
 export const registerPatient = async (firstname, lastname, dob, cellNumber, sex, email, password, taxCode) => {
     const response = await axios.post('http://localhost:8080/api/auth/registration/patient',
     {
