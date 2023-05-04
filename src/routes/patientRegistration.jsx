@@ -51,8 +51,9 @@ export default function PatientRegistration() {
 
     return (
         <>
+         <h2 className="TR">Registrazione Paziente</h2>
             <div id="registrazione">
-                <h2>Registrazione Paziente</h2>
+               
                 <Form onSubmit={handleSubmit}>
                     <label>
                         Nome:
@@ -62,14 +63,12 @@ export default function PatientRegistration() {
                         Cognome:
                         <input type="text" value={lastname} onChange={changeLastname} required/>
                     </label>
+                    <br/>
                     <label>
                         Data di Nascita:
                         <input type="date" value={dob} onChange={changeDob} required/>
                     </label>
-                    <label>
-                        Numero di Telefono:
-                        <input type="text" value={cellNumber} onChange={changeCellNumber} minLength={10} maxLength={10}/>
-                    </label>
+                    <br/>
                     <label>
                         Sesso:
                         <select value={sex} onChange={changeSex} required>
@@ -79,6 +78,17 @@ export default function PatientRegistration() {
                             <option value="NON_BINARIO">NON_BINARIO</option>
                         </select>
                     </label>
+                    <br/>
+                    <label>
+                        Codice Fiscale:
+                        <input type="text" value={taxCode} onChange={changeTaxCode} minLength={16} maxLength={16} required/>
+                    </label>
+                    <br/>
+                    <label>
+                        Numero di Telefono:
+                        <input type="text" value={cellNumber} onChange={changeCellNumber} minLength={10} maxLength={10}/>
+                    </label>
+                    <br/>
                     <label>
                         Email:
                         <input type="email" value={email} onChange={changeEmail} required/>
@@ -87,10 +97,7 @@ export default function PatientRegistration() {
                         Password:
                         <input type="password" value={password} onChange={changePassword} required/>
                     </label>
-                    <label>
-                        Codice Fiscale:
-                        <input type="text" value={taxCode} onChange={changeTaxCode} minLength={16} maxLength={16} required/>
-                    </label>
+                    <br/>
                     <button type="submit">Registrati</button>
                 </Form>
             </div>

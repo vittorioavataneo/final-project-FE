@@ -1,6 +1,7 @@
 import { Outlet, useParams, NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { findAllDoctorMedicalExamination } from "../api"; 
+import pages from "../assets/pages.mp4";
 
 export default function DoctorExaminationPage() {
     const { userId } = useParams();
@@ -25,6 +26,7 @@ export default function DoctorExaminationPage() {
 
     return (
         <>
+        <video src={pages} autoPlay loop muted/>
         <nav className="navbar">
             <NavLink to="/">
                 Home/Logout

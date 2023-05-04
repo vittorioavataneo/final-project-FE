@@ -1,8 +1,65 @@
+#registrazione{
+  padding: 40px;
+  margin-top: -20px;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+  font-weight: 500;
+}
+
+#registrazione input{
+  padding: 5px;
+  margin: 10px;
+  background-color: rgba(176, 255, 251, 0.7);
+  font-size: 0.7em; 
+}
+
+#registrazione label{
+  margin: 25px;
+}
+
+#registrazione select {
+  background-color: rgba(176, 255, 251, 0.7);
+  border-radius: 8px;
+  border-color: rgba(176, 255, 251, 0.7);
+  margin-left: 15px;
+  font-size: 1em;
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+
+
+#registrazione button{
+  padding: 10px;
+  margin-top: 15px;
+  margin-left: 15px;
+  font-size: 0.9em;
+  background-color: rgba(176, 255, 251, 0.7);
+  color: black;
+}
+
+#registrazione h4 {
+  margin-top: 50px;
+  margin-bottom: -35px;
+}
+
+.TR{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+  font-size: 2.6em;
+  margin: 20px;
+}
+
 #login{
   padding: 60px;
   margin-top: -20px;
   font-size: 1.7em;
 }
+
 #login input{
   padding: 10px;
   margin: 30px;
@@ -13,6 +70,7 @@
 #login label{
   margin: 15px;
 }
+
 #login button{
   padding: 10px;
   margin-top: 15px;
@@ -75,6 +133,7 @@ body {
   font-weight: bold;
   font-size: 1.1rem;
 }
+
 textarea,
 input,
 button {
@@ -88,13 +147,20 @@ button {
   line-height: 1.5;
   margin: 0;
 }
+
 button {
   color: #3992ff;
   font-weight: 500;
 }
 
-textarea:hover,
-input:hover,
+textarea:hover {
+  border-color: rgba(176, 255, 251, 0.297);
+}
+
+input:hover{
+  border-color: rgba(176, 255, 251, 0.297);
+}
+
 button:hover {
   box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);
 }
@@ -248,7 +314,7 @@ i {
 #detail {
   margin-top: 50px;
   padding: 2rem 4rem;
-  width: 50%;
+  width: 100%;
   float: right;
 }
 

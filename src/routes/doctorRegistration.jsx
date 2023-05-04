@@ -82,8 +82,8 @@ export default function DoctorRegistration() {
     
     return (
         <>
+            <h2 className="TR">Registrazione Dottore</h2>
             <div id="registrazione">
-                <h2>Registrazione Dottore</h2>
                 <Form onSubmit={handleSubmit}>
                     <label>
                         Nome:
@@ -93,18 +93,7 @@ export default function DoctorRegistration() {
                         Cognome:
                         <input type="text" value={lastname} onChange={changeLastname} required />
                     </label>
-                    <label>
-                        Email:
-                        <input type="text" value={email} onChange={changeEmail} required/>
-                    </label>
-                    <label>
-                        Password:
-                        <input type="text"value={password} onChange={changePassword} required />
-                    </label>
-                    <label>
-                        Codice Dottore:
-                        <input type="text"value={doctorCode} onChange={changeDoctorCode} required/>
-                    </label>
+                    <br/>
                     <label>
                         Data di Nascita:
                         <input type="date" value={dob} onChange={changeDob} required />
@@ -118,34 +107,55 @@ export default function DoctorRegistration() {
                             <option value="NON_BINARIO">NON_BINARIO</option>
                         </select>
                     </label>
+                    <br/>
                     <label>
                         Specializzazione:
                         <input type="text" value={specializationName} onChange={changeSpecializationName} required />
                     </label>
                     <label>
+                        Codice Dottore:
+                        <input type="text"value={doctorCode} onChange={changeDoctorCode} required/>
+                    </label>
+                    <br/>
+                    <label>
                         Numero di Telefono:
                         <input type="text" value={cellNumber} onChange={changeCellNumber} minLength={10} maxLength={10} required/>
                     </label>
+                    <br/>
+                    <label>
+                        Email:
+                        <input type="text" value={email} onChange={changeEmail} required/>
+                    </label>
+                    <label>
+                        Password:
+                        <input type="text"value={password} onChange={changePassword} required />
+                    </label>
+                    <br />
+                    <h4>Indirizzo:</h4>
+                    <br />
                     <label>
                         Via:
                         <input type="text" value={street} onChange={changeStreet} required />
                     </label>
+                    <br />
                     <label>
                         Città:
                         <input type="text" value={city} onChange={changeCity} required />
                     </label>
                     <label>
-                        Provincia:
-                        <input type="text" value={province} onChange={changeProvince} required />
-                    </label>
-                    <label>
                         CAP:
                         <input type="text" value={cap} onChange={changeCap} minLength={5} maxLength={5} required />
+                    </label>
+                    <br />
+                    <label>
+                        Provincia:
+                        <input type="text" value={province} onChange={changeProvince} required />
                     </label>
                     <label>
                         Stato:
                         <input type="text" value={country} onChange={changeCountry} />
                     </label>
+                    <br />
                     <button type="submit">Registrati</button>
                 </Form>
             </div>

@@ -35,10 +35,12 @@ export default function LoginAdmin() {
                                     Email:
                                     <input type="text" value={email} onChange={changeEmail} />
                                 </label>
+                                <br/>
                                 <label>
                                     Password:
                                     <input type="text" value={password} onChange={changePassword} />
                                 </label>
+                                <br/>
                                 <button type="submit">Conferma</button>
                             </Form>
             </div>
