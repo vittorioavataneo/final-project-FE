@@ -139,7 +139,6 @@ export default function ExaminationForm(){
                         Tipo di Visita:
                         <input type="text" value={specializationName} onChange={changeSpecializationName} required/>
                     </label>
-                    <br />
                     <label>
                         Dottore:
                         <select value={doctorId} onChange={changeDoctorId} required>

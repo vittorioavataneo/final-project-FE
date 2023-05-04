@@ -51,7 +51,7 @@ export default function DoctorExaminationPage() {
                         <NavLink 
                             to={`/doctor/${userId}/examinations/${examination.id}`}
                         >
-                            {examination.reservationDate}
+                            {examination.patientName} - {examination.reservationDate}
                         </NavLink>
                     </li>
                     ))

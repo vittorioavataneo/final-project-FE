@@ -34,25 +34,62 @@ function MedicalExamination() {
   return (
     examination ? (
       <>
-        {!isAnnulledOrDone && <button onClick={AnnulExamination}>Annulla Visita</button>}
-        {!isDoctor && !isProgrammed && <button onClick={AcceptExamination}>Accetta Visita</button>}
-        
-          <h2>Stato: {examination.state}</h2>
-          <h1>Nome Paziente: {examination.patientName}</h1>
-          <h2>Data: {examination.reservationDate}</h2>
-          <br />
-          <p>Medico: {examination.doctorName}</p>
-          <p>Tipo di Visita: {examination.specialization}</p>
-          <br />
-          <p>Tipo di Contatto: {examination.contact}</p>
-          <p>Pacchetto: {examination.examinationPackage}</p>
-          <br />
-          <p>Note: {examination.note}</p>
-          <br/>
-          <p>Tipo di Pagamento: {examination.payment}</p>
-          <br />
-          <p>Note di Pagamento: {examination.paymentNote}</p> 
-          </>
+        <div id="exam" class="container text-center">
+          <div class="row">
+            <div class="col">
+              {!isDoctor && !isProgrammed && <button onClick={AcceptExamination}>Accetta Visita</button>}
+            </div>
+            <div class="col">
+              {!isAnnulledOrDone && <button onClick={AnnulExamination}>Annulla Visita</button>}
+            </div>
+          </div>
+          <div id="headExam" class="row">
+            <div id='head' class="col">
+              {examination.state}
+            </div>
+            <div id='name' class="col-6">
+              {examination.patientName}
+            </div>
+            <div id='head' class="col">
+              {examination.reservationDate}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              Medico: {examination.doctorName}
+            </div>
+            <div class="col">
+              Tipo di Visita: {examination.specialization}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              Tipo di Contatto: {examination.contact}
+            </div>
+            <div class="col">
+              Pacchetto: {examination.examinationPackage}
+            </div>
+          </div>
+          <div id="sezNote" class="row">
+            <div class="col-1">
+              Note:
+            </div>
+            <div id="note" class="col">
+              {examination.note}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              Tipo di Pagamento: {examination.payment}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              Note di Pagamento: {examination.paymentNote}
+            </div>
+          </div>
+        </div>
+    </>
     ) : (
       <div>Loading...</div>
     )
