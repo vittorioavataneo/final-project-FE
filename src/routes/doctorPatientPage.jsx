@@ -37,8 +37,8 @@ export default function DoctorPatientPage() {
         </nav>
 
         <div id="sidebar">
-            <h1>Benvenuto, utente {userId}</h1>
-            <h3>Pazienti</h3>
+            <h1></h1>
+            <h3 className='sideHead'>Pazienti</h3>
             <nav>
             {patients.length ? (
                 <ul>

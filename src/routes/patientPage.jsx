@@ -37,8 +37,8 @@ export default function PatientPage() {
         </nav>
         
         <div id="sidebar">
-            <h1>Benvenuto, utente {userId}</h1>
-            <button onClick={changePage} >Prenota Visita</button>
+            <h1></h1>
+            <button className='bottone' onClick={changePage} >Prenota Visita</button>
             <h3>Cronologia Visite Mediche</h3>
             <nav>
             {medicalExaminations.length ? (

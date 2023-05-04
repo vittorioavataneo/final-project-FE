@@ -37,10 +37,10 @@ function MedicalExamination() {
         <div id="exam" class="container text-center">
           <div class="row">
             <div class="col">
-              {!isDoctor && !isProgrammed && <button onClick={AcceptExamination}>Accetta Visita</button>}
+              {!isDoctor && !isProgrammed && <button className='examButton' onClick={AcceptExamination}>Accetta Visita</button>}
             </div>
             <div class="col">
-              {!isAnnulledOrDone && <button onClick={AnnulExamination}>Annulla Visita</button>}
+              {!isAnnulledOrDone && <button className='examButton' onClick={AnnulExamination}>Annulla Visita</button>}
             </div>
           </div>
           <div id="headExam" class="row">

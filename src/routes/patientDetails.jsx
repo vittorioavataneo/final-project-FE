@@ -23,32 +23,38 @@ export default function PatientDetails() {
 
     return (
         <>
-            <div>
+            <div id='detPazienti'>
                 <h1>Dettagli Paziente</h1>
                 <div>
                     <ul>
-                        <li>{patient.firstname}</li>
-                        <li>{patient.lastname}</li>
-                        <li>{patient.dob}</li>
-                        <li>{patient.sex}</li>
-                        <li>{patient.cellNumber}</li>
-                        <li>{patient.taxCode}</li>
+                        <li>Nome: {patient.firstname}</li>
+                        <li>Cognome: {patient.lastname}</li>
+                        <li>Data di nascita; {patient.dob}</li>
+                        <li>Genere: {patient.sex}</li>
+                        <li>Numero di telefono: {patient.cellNumber}</li>
+                        <li>Codice Fiscal: {patient.taxCode}</li>
                     </ul>
                 </div>
                 <h3>Cronologia Visite Mediche</h3>
                 <nav>
                     {medicalExams.length ? (
-                        <ul>
-                            {medicalExams.map((examination) => (
-                                <li key={examination.id}>
-                                    <NavLink
-                                        to={`/doctor/${userId}/patients/${patient.id}/examination/${examination.id}`}
-                                    >
-                                        {examination.reservationDate}
-                                    </NavLink>
-                                </li>
-                            ))}
-                        </ul>
+                        <div class="row">
+                        {medicalExams.map((examination) => (
+                            <div class="col-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="card-text">{examination.reservationDate}</p>
+                                        <NavLink
+                                            to={`/doctor/${userId}/patients/${patient.id}/examination/${examination.id}`}
+                                            class="btn btn-primary"
+                                        >
+                                            Vai alla visita
+                                        </NavLink>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        </div>
                     ) : (
                         <p>
                             <i>Nessuna Visita</i>

@@ -40,9 +40,8 @@ export default function DoctorExaminationPage() {
         </nav>
         
         <div id="sidebar">
-            <h1>Benvenuto, utente {userId}</h1>
-            <button onClick={changePage}>Aggiungi Visita</button>
-            <h3>Cronologia Visite Mediche</h3>
+            <h1></h1>
+            <h3 className='sideHead'>Cronologia Visite Mediche</h3>
             <nav>
             {medicalExaminations.length ? (
                 <ul>
