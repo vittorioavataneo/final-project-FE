@@ -5,7 +5,7 @@ export default function LandingPage() {
         <>
         
             <div id="sidebar">
-                <h1>Progetto Medici - General Login</h1>
+                <h1>Progetto Medici - Home Page</h1>
                 <nav>
                     <ul>
 

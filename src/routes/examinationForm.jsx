@@ -132,13 +132,14 @@ export default function ExaminationForm(){
 
     return (
         <>
+            <h2 className="TR">Richiesta Visita</h2>
             <div id="registrazione">
-                <h2>Richiesta Visita</h2>
                 <Form onSubmit={handleSubmit}>
                     <label>
                         Tipo di Visita:
                         <input type="text" value={specializationName} onChange={changeSpecializationName} required/>
                     </label>
+                    <br />
                     <label>
                         Dottore:
                         <select value={doctorId} onChange={changeDoctorId} required>
@@ -150,10 +151,12 @@ export default function ExaminationForm(){
                             ))}
                         </select>
                     </label>
+                    <br />
                     <label>
                         Data:
                         <input type="date" value={reservationDate} onChange={changeReservationDate} required/>
                     </label>
+                    <br />
                     <label>
                         Tipo di contatto:
                         <select value={contact} onChange={changeContact} required>
@@ -161,6 +164,7 @@ export default function ExaminationForm(){
                             <option value="INTERVISTA">INTERVISTA</option>
                         </select>
                     </label>
+                    <br />
                     <label>
                         Pagamento:
                         <select value={payment} onChange={changePayment} required>
@@ -172,6 +176,7 @@ export default function ExaminationForm(){
                             <option value="CONTANTI">CONTANTI</option>
                         </select>
                     </label>
+                    <br />
                     <label>
                         Pacchetto:
                         <select value={examinationPackage} onChange={changeExaminationPackage} required>
@@ -181,18 +186,22 @@ export default function ExaminationForm(){
                             <option value="MENTE">MENTE</option>
                         </select>
                     </label>
+                    <br />
                     <label>
                         Note:
                         <input type="text" value={note} onChange={changeNote} />
                     </label>
+                    <br />
                     <label>
                         Note Pagamento:
                         <input type="text" value={paymentNote} onChange={changePaymentNote} />
                     </label>
+                    <br />
                     <label>
                         Fatturazione:
                         <input type="checkbox" checked={billing} onChange={changeBilling}/>
                     </label>
+                    <br />
                     <button type="submit">Invia richiesta</button>
                 </Form>
             </div>

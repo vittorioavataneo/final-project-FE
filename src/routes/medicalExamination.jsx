@@ -2,6 +2,7 @@ import { useLoaderData, useParams } from 'react-router-dom';
 import React from 'react';
 import { findExaminationById, changeExaminationToAnnulled, changeExaminationToProgrammed, findDoctorById, findPatientById } from "../api"; 
 
+
 export async function loader({ params }) {
   const examination = await findExaminationById(params.examinationId);
   const doc = await findDoctorById(params.userId)
@@ -34,23 +35,24 @@ function MedicalExamination() {
     examination ? (
       <>
         {!isAnnulledOrDone && <button onClick={AnnulExamination}>Annulla Visita</button>}
-
         {!isDoctor && !isProgrammed && <button onClick={AcceptExamination}>Accetta Visita</button>}
         
-        <ul key={examination.id}>
-          <li>{examination.doctorName}</li>
-          <li>{examination.patientName}</li>
-          <li>{examination.reservationDate}</li>
-          <li>{examination.contact}</li>
-          <li>{examination.specialization}</li>
-          <li>{examination.payment}</li>
-          <li>{examination.examinationPackage}</li>
-          <li>{examination.note}</li>
-          <li>{examination.paymentNote}</li>
-          <li>{examination.billing}</li>
-          <li>{examination.state}</li>     
-        </ul>
-      </>
+          <h2>Stato: {examination.state}</h2>
+          <h1>Nome Paziente: {examination.patientName}</h1>
+          <h2>Data: {examination.reservationDate}</h2>
+          <br />
+          <p>Medico: {examination.doctorName}</p>
+          <p>Tipo di Visita: {examination.specialization}</p>
+          <br />
+          <p>Tipo di Contatto: {examination.contact}</p>
+          <p>Pacchetto: {examination.examinationPackage}</p>
+          <br />
+          <p>Note: {examination.note}</p>
+          <br/>
+          <p>Tipo di Pagamento: {examination.payment}</p>
+          <br />
+          <p>Note di Pagamento: {examination.paymentNote}</p> 
+          </>
     ) : (
       <div>Loading...</div>
     )

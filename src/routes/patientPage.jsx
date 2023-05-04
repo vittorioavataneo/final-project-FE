@@ -48,7 +48,7 @@ export default function PatientPage() {
                         <NavLink 
                             to={`/patient/${userId}/examination/${examination.id}`}
                         >
-                            {examination.reservationDate}
+                            {examination.doctorName} - {examination.reservationDate}
                         </NavLink>
                     </li>
                     ))
