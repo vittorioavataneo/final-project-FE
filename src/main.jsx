@@ -8,7 +8,7 @@ import "./index.css";
 import DoctorRegistration from "./routes/doctorRegistration";
 import PatientRegistration from "./routes/patientRegistration";
 import Root from "./routes/root";
-import PatientPage from "./routes/patientPage";
+import PatientPage, {loader as patientPageLoader} from "./routes/patientPage";
 import LoginPatient from "./routes/loginPatient";
 import LoginDoctor from "./routes/loginDoctor";
 import LoginAdmin from "./routes/loginAdmin";
@@ -53,6 +53,7 @@ const router = createBrowserRouter([
     {
       path: '/patient/:userId',
       element: <PatientPage/>,
+      loader: patientPageLoader,
       children:[
         {
           path: '/patient/:userId/examination/:examinationId',

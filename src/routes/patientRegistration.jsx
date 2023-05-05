@@ -1,6 +1,6 @@
-import { Form } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { registerPatient } from "../api";
+import { registerPatient, findPersonIdByUserEmail} from "../api";
 
 export default function PatientRegistration() {
 
@@ -12,9 +12,21 @@ export default function PatientRegistration() {
         const[taxCode, setTaxCode] = useState("");
         const[cellNumber, setCellNumber] = useState("");
         const[sex, setSex] = useState("");
+        const[userId, setUserId] = useState(null);
+        const navigate = useNavigate();
+
     
         function handleSubmit(){
-            registerPatient(firstname, lastname, dob, cellNumber, sex, email, password, taxCode);
+            registerPatient(firstname, lastname, dob, cellNumber, sex, email, password, taxCode)
+            .then(() => findPersonIdByUserEmail(email))
+            .then((userId) => {
+                setUserId(userId);
+                navigate(`/patient/${userId}`);
+            })
+            .catch((error) => {
+                console.error(error);
+                navigate('/loginError');
+            });
         }
     
         function changeFirstname(e){

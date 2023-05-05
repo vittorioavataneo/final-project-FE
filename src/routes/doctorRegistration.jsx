@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Form } from "react-router-dom";
-import { registerDoctor } from "../api";
+import { Form, useNavigate } from "react-router-dom";
+import { registerDoctor, findPersonIdByUserEmail } from "../api";
 
 export default function DoctorRegistration() {
         const[firstname, setFirstname] = useState("");
@@ -17,10 +17,21 @@ export default function DoctorRegistration() {
         const[country,setCountry]=useState("");
         const[doctorCode, setDoctorCode]=useState("");
         const[specializationName, setSpecializationName]=useState("");
+        const[userId, setUserId] = useState(null);
+        const navigate = useNavigate();
         
 
         function handleSubmit(){
             registerDoctor(firstname, lastname, dob, cellNumber, sex, email, password, doctorCode, specializationName, street, cap, city, province, country)
+            .then(() => findPersonIdByUserEmail(email))
+            .then((userId) => {
+                setUserId(userId);
+                navigate(`/doctor/${userId}/examinations`);
+            })
+            .catch((error) => {
+                console.error(error);
+                navigate('/loginError');
+            });
         }
 
         function changeFirstname(e){
@@ -149,7 +160,7 @@ export default function DoctorRegistration() {
                     <br />
                     <label>
                         Provincia:
-                        <input type="text" value={province} onChange={changeProvince} required />
+                        <input type="text" value={province} onChange={changeProvince} minLength={2} maxLength={2} required />
                     </label>
                     <label>
                         Stato:

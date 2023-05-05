@@ -30,7 +30,7 @@ export default function DoctorExaminationPage() {
         setSearching(true);
         setQ(event.currentTarget.value);
         try {
-            const results = await findExaminationByPatientName(event.currentTarget.value);
+            const results = await findExaminationByPatientName(event.currentTarget.value, userId);
             setMedicalExaminations(results);
         } catch (error) {
             console.error(error);

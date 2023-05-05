@@ -28,7 +28,7 @@ export default function DoctorPatientPage() {
         setSearching(true);
         setQ(event.currentTarget.value);
         try {
-            const results = await findPatientByName(event.currentTarget.value);
+            const results = await findPatientByName(event.currentTarget.value, userId);
             setPatients(results);
         } catch (error) {
             console.error(error);

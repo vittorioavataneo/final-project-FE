@@ -1,6 +1,10 @@
-import { Form, useParams } from "react-router-dom";
+import { Form, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { createNewExamination, findDoctorBySpecialization, findPatientById, findSpecializationByName, findDoctorById } from "../api";
+import { findDoctorBySpecialization, 
+    findPatientById, 
+    findSpecializationByName, 
+    findDoctorById } from "../api";
+import {createExamination} from "../routes/patientPage";
 
 export default function ExaminationForm(){
 
@@ -20,9 +24,12 @@ export default function ExaminationForm(){
     const[specialization, setSpecialization] = useState({}); 
     const[doctorList, setDoctorList] = useState([]);
     const[doctorId, setDoctorId] = useState("");
+    const navigate = useNavigate();
 
     function handleSubmit(){
-        createNewExamination(
+        createExamination(
+            userId,
+            navigate,
             doctor, 
             patient, 
             reservationDate,
@@ -35,6 +42,7 @@ export default function ExaminationForm(){
             billing, 
             state
         );
+            
     }
 
     useEffect(()=>{
