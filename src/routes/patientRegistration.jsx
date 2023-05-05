@@ -56,21 +56,21 @@ export default function PatientRegistration() {
                
                 <Form onSubmit={handleSubmit}>
                     <label>
-                        Nome:
+                        Nome: 
                         <input type="text" value={firstname} onChange={changeFirstname} required/>
                     </label>
                     <label>
-                        Cognome:
+                        Cognome: 
                         <input type="text" value={lastname} onChange={changeLastname} required/>
                     </label>
                     <br/>
                     <label>
-                        Data di Nascita:
+                        Data di Nascita: 
                         <input type="date" value={dob} onChange={changeDob} required/>
                     </label>
                     <br/>
                     <label>
-                        Sesso:
+                        Sesso: 
                         <select value={sex} onChange={changeSex} required>
                             <option>---</option>
                             <option value="UOMO">UOMO</option>
@@ -80,21 +80,21 @@ export default function PatientRegistration() {
                     </label>
                     <br/>
                     <label>
-                        Codice Fiscale:
+                        Codice Fiscale: 
                         <input type="text" value={taxCode} onChange={changeTaxCode} minLength={16} maxLength={16} required/>
                     </label>
                     <br/>
                     <label>
-                        Numero di Telefono:
+                        Numero di Telefono: 
                         <input type="text" value={cellNumber} onChange={changeCellNumber} minLength={10} maxLength={10}/>
                     </label>
                     <br/>
                     <label>
-                        Email:
+                        Email: 
                         <input type="email" value={email} onChange={changeEmail} required/>
                     </label>
                     <label>
-                        Password:
+                        Password: 
                         <input type="password" value={password} onChange={changePassword} required/>
                     </label>
                     <br/>

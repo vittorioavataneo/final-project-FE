@@ -24,31 +24,46 @@ export default function PatientDetails() {
     return (
         <>
             <div id='detPazienti'>
-                <h1>Dettagli Paziente</h1>
-                <div>
-                    <ul>
-                        <li>Nome: {patient.firstname}</li>
-                        <li>Cognome: {patient.lastname}</li>
-                        <li>Data di nascita; {patient.dob}</li>
-                        <li>Genere: {patient.sex}</li>
-                        <li>Numero di telefono: {patient.cellNumber}</li>
-                        <li>Codice Fiscal: {patient.taxCode}</li>
-                    </ul>
+                <h1 id="detPaz">Dettagli Paziente</h1>
+                <div id="headExam" class="row">
+                    <div id='head' class="col">
+                        Nome: {patient.firstname}
+                    </div>
+                    <div id='head' class="col">
+                        Cognome: {patient.lastname}
+                    </div>
                 </div>
-                <h3>Cronologia Visite Mediche</h3>
-                <nav>
+                <div id="headExam" class="row">
+                    <div id='head' class="col">
+                        Data di nascita; {patient.dob}
+                    </div>
+                    <div id='head' class="col">
+                        Genere: {patient.sex}
+                    </div>
+                </div>
+                <div id="headExam" class="row">
+                    <div id='head' class="col">
+                        Numero di telefono: {patient.cellNumber}
+                    </div>
+                    <div id='head' class="col">
+                        Codice Fiscal: {patient.taxCode}
+                    </div>
+                </div>
+                <h3 id="cronologiaExam">Cronologia Visite Mediche</h3>
+                <nav >
                     {medicalExams.length ? (
                         <div class="row">
                         {medicalExams.map((examination) => (
-                            <div class="col-4">
+                            <div id="cardSect" class="col-4">
                                 <div class="card">
                                     <div class="card-body">
-                                        <p class="card-text">{examination.reservationDate}</p>
+                                        <p class="card-text">{examination.specialization}</p>
                                         <NavLink
                                             to={`/doctor/${userId}/patients/${patient.id}/examination/${examination.id}`}
                                             class="btn btn-primary"
+                                            id="cardDate"
                                         >
-                                            Vai alla visita
+                                            {examination.reservationDate}
                                         </NavLink>
                                     </div>
                                 </div>

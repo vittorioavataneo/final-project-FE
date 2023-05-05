@@ -1,13 +1,16 @@
-import { Outlet, useParams, NavLink, useNavigate } from 'react-router-dom';
+import { Form, useSubmit, Outlet, useParams, NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
-import { findAllPatientByDoctorId } from "../api"; 
+import { findAllPatientByDoctorId, findPatientByName } from "../api"; 
 import pages from "../assets/pages.mp4";
 
 
 export default function DoctorPatientPage() {
     const { userId } = useParams();
     const [patients, setPatients] = useState([]);
+    const [searching, setSearching] = useState(false);
+    const [q, setQ] = useState("");
     const navigate = useNavigate();
+    const submit = useSubmit();
 
     useEffect(() => {
     async function fetchPatient() {
@@ -20,6 +23,19 @@ export default function DoctorPatientPage() {
     }
     fetchPatient();
     }, [userId]);
+
+    const handleSearch = async (event) => {
+        setSearching(true);
+        setQ(event.currentTarget.value);
+        try {
+            const results = await findPatientByName(event.currentTarget.value);
+            setPatients(results);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setSearching(false);
+        }
+    };
 
     return (
         <>
@@ -39,6 +55,22 @@ export default function DoctorPatientPage() {
         <div id="sidebar">
             <h1></h1>
             <h3 className='sideHead'>Pazienti</h3>
+            <div>
+                <Form id="search-form" role="search">
+                    <input
+                    id="q"
+                    className={searching ? "loading" : ""}
+                    aria-label="Search contacts"
+                    placeholder="Search"
+                    type="search"
+                    name="q"
+                    defaultValue={q}
+                    onChange={handleSearch}
+                    />
+                    <div id="search-spinner" aria-hidden hidden={!searching} />
+                    <div className="sr-only" aria-live="polite"></div>
+                </Form>
+            </div>
             <nav>
             {patients.length ? (
                 <ul>

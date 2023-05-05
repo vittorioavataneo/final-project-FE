@@ -31,6 +31,11 @@ export const findAllPatientByDoctorId = async (userId) =>{
     return response.data;
 }
 
+export const findPatientByName = async (part) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/patient/find/patient/name/${part}`)
+    return response.data;
+}
+
 //SPECIALIZATION
 export const findSpecializationByName = async(specializationName) =>{
     const response = await axios.get(`http://localhost:8080/api/auth/specialization/find/${specializationName}`)
@@ -69,6 +74,11 @@ export const findAllDoctorMedicalExamination = async (userId) =>{
 
 export const findExaminationById = async (examinationId) =>{
     const response = await axios.get(`http://localhost:8080/api/auth/medExamination/find/${examinationId}`)
+    return response.data;
+}
+
+export const findExaminationByPatientName = async (name) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/medExamination/patient/name/${name}`)
     return response.data;
 }
 
