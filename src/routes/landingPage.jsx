@@ -15,9 +15,6 @@ export default function LandingPage() {
                         <li>
                             <NavLink to="/doctorLogin">Login Dottore</NavLink>
                         </li>
-                        <li>
-                            <NavLink to="/adminLogin">Login Admin</NavLink>
-                        </li>
                     </ul>
                 </nav>
 

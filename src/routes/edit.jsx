@@ -1,22 +1,23 @@
-import { useLoaderData, useParams, Form, NavLink, useNavigate } from 'react-router-dom';
+import { useLoaderData, useParams, Form, useNavigate } from 'react-router-dom';
 import React from 'react';
-import { findExaminationById, changeExaminationToAnnulled, changeExaminationToProgrammed, findDoctorById } from "../api"; 
+import { findExaminationById, changeExaminationToAnnulled, changeExaminationToProgrammed, findDoctorById, updateExamination, findPatientByExamId } from "../api"; 
 
 
 export async function loader({ params }) {
   const examination = await findExaminationById(params.examinationId);
-  const doc = await findDoctorById(params.userId)
+  const doc = await findDoctorById(params.userId);
+  const pat = await findPatientByExamId(params.examinationId);
   if (!examination) {
     throw new Response("", {
       status: 404,
       statusText: "Not Found",
     });
   }
-  return { examination, doc };
+  return { examination, doc, pat };
 }
 
-function MedicalExamination() {
-  const { examination, doc } = useLoaderData();
+function Edit() {
+  const { examination, doc, pat } = useLoaderData();
   const { userId } = useParams();
   const navigate = useNavigate();
 
@@ -32,8 +33,13 @@ function MedicalExamination() {
     await changeExaminationToProgrammed(examination.id);
   } 
 
-  function ChangePage(){
-    navigate(`/doctor/${userId}/examinations/edit/${examination.id}`)
+  async function SaveExamination(){
+    const note = document.querySelector('textarea[name="notes"]').value;
+    examination.note = note;
+    await updateExamination(examination, examination.id, doc, pat, doc.specialization)
+    .then(() => {
+      navigate(`/patient/${userId}/examination/${examination.id}`);
+    });
   }
 
   return (
@@ -42,10 +48,10 @@ function MedicalExamination() {
         <div id="exam" class="container text-center">
           <div class="row">
             <div class="col">
-              {doc && !isDoctor && !isProgrammed && <button className='examButton' onClick={AcceptExamination}>Accetta Visita</button>}
+              {!isDoctor && !isProgrammed && <button className='examButton' onClick={AcceptExamination}>Accetta Visita</button>}
             </div>
             <div class="col">
-              {doc && !isDoctor && <button onClick={ChangePage} className='examButton'>Modifica</button>}
+                <button className='examButton' onClick={SaveExamination}>Salva</button>
             </div>
             <div class="col">
               {!isAnnulledOrDone && <button className='examButton' onClick={AnnulExamination}>Annulla Visita</button>}
@@ -83,7 +89,14 @@ function MedicalExamination() {
               Note:
             </div>
             <div id="note" class="col">
-              {examination.note}
+                <label className='textNote'>
+                    <textarea
+                    name="notes"
+                    className='textNote'
+                    defaultValue={examination.note}
+                    rows={6}
+                    />
+                </label>
             </div>
           </div>
           <div class="row">
@@ -104,4 +117,4 @@ function MedicalExamination() {
   );
 }
 
-export default MedicalExamination;
+export default Edit;

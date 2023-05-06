@@ -81,7 +81,7 @@ export default function PatientPage() {
               {examinations.map((examination) => (
                 <li key={examination.id}>
                   <NavLink to={`/patient/${userId}/examination/${examination.id}`}>
-                    {examination.doctorName} - {examination.reservationDate}
+                    {examination.specialization} - {examination.reservationDate}
                   </NavLink>
                 </li>
               ))}

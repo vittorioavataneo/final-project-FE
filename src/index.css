@@ -1,3 +1,13 @@
+.textNote{
+  width: 100%;
+}
+
+#container{
+  overflow-y: scroll;
+  height: 420px;
+  margin-top: 20px;
+}
+
 .card{
   width: 13rem;
   padding: 20px;
@@ -28,6 +38,7 @@
   display: flex; 
   justify-content: center; 
   align-items: center;
+  margin-top: 80px;
 }
 
 #detPaz{
@@ -435,6 +446,7 @@ i {
   margin-top: 50px;
   width: 100%;
   float: right;
+  overflow-y: scroll;
 }
 
 

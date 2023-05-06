@@ -36,6 +36,11 @@ export const findPatientByName = async (part, id) =>{
     return response.data;
 }
 
+export const findPatientByExamId = async (examinationId) =>{
+    const response = await axios.get(`http://localhost:8080/api/auth/patient/find/patient/examination/${examinationId}`)
+    return response.data;
+}
+
 //SPECIALIZATION
 export const findSpecializationByName = async(specializationName) =>{
     const response = await axios.get(`http://localhost:8080/api/auth/specialization/find/${specializationName}`)
@@ -61,6 +66,24 @@ export const createNewExamination = async(doctor, patient, reservationDate, cont
     });
     return response.data;
 
+}
+
+export const updateExamination = async (examination, examinationId, doc, pat, specialization) =>{
+    await axios.put(`http://localhost:8080/api/auth/medExamination/${examinationId}`,
+    {
+        "id": `${examinationId}`,
+        "doctorDto": doc,
+        "patientDto": pat,
+        "reservationDate": `${examination.reservationDate}`,
+        "contact": `${examination.contact}`,
+        "specializationDto": specialization,
+        "payment": `${examination.payment}`,
+        "examinationPackage": `${examination.examinationPackage}`,
+        "note": `${examination.note}`,
+        "paymentNote": `${examination.paymentNote}`,
+        "billing": `${examination.billing}`,
+        "state": `${examination.state}`,
+    });
 }
 
 export const findAllPatientMedicalExamination = async (userId) =>{

@@ -125,7 +125,7 @@ export default function DoctorRegistration() {
                     </label>
                     <label>
                         Codice Dottore:
-                        <input type="text"value={doctorCode} onChange={changeDoctorCode} required/>
+                        <input type="text"value={doctorCode} onChange={changeDoctorCode} minLength={5} maxLength={5}required/>
                     </label>
                     <br/>
                     <label>
@@ -135,11 +135,11 @@ export default function DoctorRegistration() {
                     <br/>
                     <label>
                         Email:
-                        <input type="text" value={email} onChange={changeEmail} required/>
+                        <input type="email" value={email} onChange={changeEmail} required/>
                     </label>
                     <label>
                         Password:
-                        <input type="text"value={password} onChange={changePassword} required />
+                        <input type="password"value={password} onChange={changePassword} required />
                     </label>
                     <br />
                     <h4>Indirizzo:</h4>

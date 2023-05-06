@@ -36,11 +36,11 @@ export default function LoginPatient() {
                             <Form onSubmit={handleSubmit}>
                                 <label>
                                     Email:
-                                    <input type="text" value={email} onChange={changeEmail} />
+                                    <input type="email" value={email} onChange={changeEmail} />
                                 </label><br/>
                                 <label>
                                     Password:
-                                    <input type="text" value={password} onChange={changePassword} />
+                                    <input type="password" value={password} onChange={changePassword} />
                                 </label><br/>
                                 <button type="submit">Conferma</button>
                             </Form>

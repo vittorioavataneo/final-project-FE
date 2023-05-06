@@ -1,5 +1,5 @@
 import { Outlet, useParams, NavLink, useNavigate, useLoaderData } from 'react-router-dom';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { findPatientById, findAllPatientMedicalExamination } from "../api";
 
 export async function loader({ params }) {
@@ -23,7 +23,7 @@ export default function PatientDetails() {
 
     return (
         <>
-            <div id='detPazienti'>
+            <div id='detPazienti' key={patient.id}>
                 <h1 id="detPaz">Dettagli Paziente</h1>
                 <div id="headExam" class="row">
                     <div id='head' class="col">
@@ -50,7 +50,7 @@ export default function PatientDetails() {
                     </div>
                 </div>
                 <h3 id="cronologiaExam">Cronologia Visite Mediche</h3>
-                <nav >
+                <nav id='container'>
                     {medicalExams.length ? (
                         <div class="row">
                         {medicalExams.map((examination) => (

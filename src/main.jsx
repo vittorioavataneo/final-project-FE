@@ -18,6 +18,7 @@ import ExaminationForm from "./routes/examinationForm";
 import DoctorPatientPage from "./routes/doctorPatientPage";
 import DoctorExaminationPage from "./routes/doctorExaminationPage";
 import PatientDetails, {loader as patientLoader}from "./routes/patientDetails";
+import Edit, {loader as examinationEditLoader} from "./routes/edit"
 
 const router = createBrowserRouter([
     {
@@ -78,6 +79,11 @@ const router = createBrowserRouter([
         {
           path: '/doctor/:userId/examinations/createExamination',
           element: <ExaminationForm/>
+        },
+        {
+          path: '/doctor/:userId/examinations/edit/:examinationId',
+          element: <Edit/>,
+          loader: examinationEditLoader
         },
       ]
     },

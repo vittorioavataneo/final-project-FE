@@ -169,6 +169,11 @@ export default function ExaminationForm(){
                         <select value={contact} onChange={changeContact} required>
                             <option>---</option>
                             <option value="INTERVISTA">INTERVISTA</option>
+                            <option value="PREVENTIVA">PREVENTIVA</option>
+                            <option value="PERIODICA">PERIODICA</option>
+                            <option value="VISITA">VISITA</option>
+                            <option value="SPECIALISTICA">SPECIALISTICA</option>
+                            <option value="URGENTE">URGENTE</option>
                         </select>
                     </label>
                     <br />
