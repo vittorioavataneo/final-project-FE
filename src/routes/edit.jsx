@@ -1,5 +1,5 @@
 import { useLoaderData, useParams, Form, useNavigate } from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
 import { findExaminationById, changeExaminationToAnnulled, changeExaminationToProgrammed, findDoctorById, updateExamination, findPatientByExamId } from "../api"; 
 
 
@@ -7,6 +7,7 @@ export async function loader({ params }) {
   const examination = await findExaminationById(params.examinationId);
   const doc = await findDoctorById(params.userId);
   const pat = await findPatientByExamId(params.examinationId);
+  console.log(pat);
   if (!examination) {
     throw new Response("", {
       status: 404,
@@ -21,25 +22,38 @@ function Edit() {
   const { userId } = useParams();
   const navigate = useNavigate();
 
+  const [newDate, setNewDate] = useState(examination.reservationDate);
+
   const isDoctor = doc.id === userId;
   const isAnnulledOrDone = examination?.state === "Annullato" || examination?.state === "Fatto";
   const isProgrammed = examination?.state === "Annullato" || examination?.state === "Fatto" || examination?.state === "Programmato";
 
   async function AnnulExamination(){
-      await changeExaminationToAnnulled(examination.id);
+      await changeExaminationToAnnulled(examination.id)
+      .then(() => {
+        navigate(`/doctor/${userId}/examinations/${examination.id}`);
+      });
   } 
 
   async function AcceptExamination(){
-    await changeExaminationToProgrammed(examination.id);
+      await changeExaminationToProgrammed(examination.id)
+      .then(() => {
+        navigate(`/doctor/${userId}/examinations/${examination.id}`);
+      });
   } 
 
   async function SaveExamination(){
     const note = document.querySelector('textarea[name="notes"]').value;
     examination.note = note;
+    examination.reservationDate = newDate;
     await updateExamination(examination, examination.id, doc, pat, doc.specialization)
     .then(() => {
-      navigate(`/patient/${userId}/examination/${examination.id}`);
+      navigate(`/doctor/${userId}/examinations/${examination.id}`);
     });
+  }
+
+  function handleDateChange(event) {
+    setNewDate(event.target.value);
   }
 
   return (
@@ -65,7 +79,7 @@ function Edit() {
               {examination.patientName}
             </div>
             <div id='head' class="col">
-              {examination.reservationDate}
+              <input type="date" name="reservationDate" value={newDate} onChange={handleDateChange} />
             </div>
           </div>
           <div class="row">

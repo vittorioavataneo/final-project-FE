@@ -25,11 +25,22 @@ function MedicalExamination() {
   const isProgrammed = examination?.state === "Annullato" || examination?.state === "Fatto" || examination?.state === "Programmato";
 
   async function AnnulExamination(){
-      await changeExaminationToAnnulled(examination.id);
+      await changeExaminationToAnnulled(examination.id)
+      .then(() =>{
+        if (doc) {
+          navigate(`/doctor/${userId}/examinations/${examination.id}`);
+        } else {
+          navigate(`/patient/${userId}/examination/${examination.id}`);
+        }
+      });
+      
   } 
 
   async function AcceptExamination(){
-    await changeExaminationToProgrammed(examination.id);
+    await changeExaminationToProgrammed(examination.id)
+    .then(() => {
+      navigate(`/doctor/${userId}/examinations/${examination.id}`);
+    });
   } 
 
   function ChangePage(){
