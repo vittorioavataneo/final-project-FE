@@ -2,6 +2,9 @@ import { Outlet, useParams, NavLink, useNavigate, useLoaderData } from 'react-ro
 import { useState, useEffect } from "react";
 import { findAllPatientMedicalExamination, createNewExamination } from "../api"; 
 import pages from "../assets/pages.mp4";
+import { FaBookMedical, FaHandHoldingMedical } from "react-icons/fa";
+import { AiFillHome } from "react-icons/ai";
+
 
 export async function loader({ params }) {
   const medicalExaminations = await findAllPatientMedicalExamination(params.userId);
@@ -67,13 +70,13 @@ export default function PatientPage() {
       <video src={pages} autoPlay loop muted/>
       <nav className="navbar">
         <NavLink to="/">
-          Home/Logout
+          Home/Logout <AiFillHome/>
         </NavLink>
       </nav>
       
       <div id="sidebar">
         <h1></h1>
-        <button className='bottone' onClick={changePage}>Prenota Visita</button>
+        <button className='bottone' onClick={changePage}>Prenota Visita <FaHandHoldingMedical/> </button>
         <h3>Cronologia Visite Mediche</h3>
         <nav>
           {examinations.length ? (
@@ -81,7 +84,7 @@ export default function PatientPage() {
               {examinations.map((examination) => (
                 <li key={examination.id}>
                   <NavLink to={`/patient/${userId}/examination/${examination.id}`}>
-                    {examination.specialization} - {examination.reservationDate}
+                    {examination.specialization} - {examination.reservationDate} <FaBookMedical/>
                   </NavLink>
                 </li>
               ))}

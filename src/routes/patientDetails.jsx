@@ -1,6 +1,7 @@
 import { Outlet, useParams, NavLink, useNavigate, useLoaderData } from 'react-router-dom';
 import { useState } from "react";
 import { findPatientById, findAllPatientMedicalExamination } from "../api";
+import { FaFileMedicalAlt } from "react-icons/fa";
 
 export async function loader({ params }) {
     const patient = await findPatientById(params.patientId);
@@ -35,7 +36,7 @@ export default function PatientDetails() {
                 </div>
                 <div id="headExam" class="row">
                     <div id='head' class="col">
-                        Data di nascita; {patient.dob}
+                        Data di nascita: {patient.dob}
                     </div>
                     <div id='head' class="col">
                         Genere: {patient.sex}
@@ -57,7 +58,7 @@ export default function PatientDetails() {
                             <div id="cardSect" class="col-4">
                                 <div class="card">
                                     <div class="card-body">
-                                        <p class="card-text">{examination.specialization}</p>
+                                        <p class="card-text">{examination.specialization} <FaFileMedicalAlt/> </p>
                                         <NavLink
                                             to={`/doctor/${userId}/patients/${patient.id}/examination/${examination.id}`}
                                             class="btn btn-primary"

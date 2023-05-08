@@ -2,6 +2,9 @@ import { Form, Outlet, useParams, NavLink, useNavigate, useSubmit } from 'react-
 import { useState, useEffect } from "react";
 import { findAllDoctorMedicalExamination, findExaminationByPatientName } from "../api";
 import pages from "../assets/pages.mp4";
+import { FaFileMedicalAlt } from "react-icons/fa";
+import { BsFillPersonFill } from "react-icons/bs";
+import { AiFillHome } from "react-icons/ai";
 
 export default function DoctorExaminationPage() {
     
@@ -44,8 +47,8 @@ export default function DoctorExaminationPage() {
     <>
       <video src={pages} autoPlay loop muted />
       <nav className="navbar">
-        <NavLink to="/">Home/Logout</NavLink>
-        <NavLink to={`/doctor/${userId}/patients`}>Pazienti</NavLink>
+        <NavLink to="/">Home/Logout <AiFillHome/> </NavLink>
+        <NavLink to={`/doctor/${userId}/patients`}>Pazienti <BsFillPersonFill/> </NavLink>
         <NavLink to={`/doctor/${userId}/examinations`}>Visite Mediche</NavLink>
       </nav>
 
@@ -74,7 +77,7 @@ export default function DoctorExaminationPage() {
               {medicalExaminations.map((examination) => (
                 <li key={examination.id}>
                   <NavLink to={`/doctor/${userId}/examinations/${examination.id}`}>
-                    {examination.patientName} - {examination.reservationDate}
+                    {examination.patientName} - {examination.reservationDate} <FaFileMedicalAlt/>
                   </NavLink>
                 </li>
               ))}

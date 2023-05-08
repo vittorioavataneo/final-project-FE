@@ -1,12 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import './navbar.css';
+import { AiFillHome } from "react-icons/ai";
 
 function Navbar() {
   return (
     <>
         <nav className="navbar">
             <NavLink to="/">
-                Home
+                Home <AiFillHome/>
             </NavLink>
         </nav>
     </>

@@ -1,4 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
+import { AiOutlineLogin } from "react-icons/ai";
+import { MdAppRegistration } from "react-icons/md";
 
 export default function LandingPage() {
     return (
@@ -10,10 +12,10 @@ export default function LandingPage() {
                     <ul>
 
                         <li>
-                            <NavLink to="/patientLogin">Login Paziente</NavLink>
+                            <NavLink to="/patientLogin">Login Paziente <AiOutlineLogin/> </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/doctorLogin">Login Dottore</NavLink>
+                            <NavLink to="/doctorLogin">Login Dottore <AiOutlineLogin/> </NavLink>
                         </li>
                     </ul>
                 </nav>
@@ -22,10 +24,10 @@ export default function LandingPage() {
                 <nav>
                     <ul>
                         <li>
-                            <NavLink to="/patientRegistration">Registrazione Paziente</NavLink>
+                            <NavLink to="/patientRegistration">Registrazione Paziente <MdAppRegistration/> </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/doctorRegistration">Registrazione Dottore</NavLink>
+                            <NavLink to="/doctorRegistration">Registrazione Dottore <MdAppRegistration/> </NavLink>
                         </li>
                     </ul>
                 </nav>

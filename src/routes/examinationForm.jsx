@@ -5,6 +5,7 @@ import { findDoctorBySpecialization,
     findSpecializationByName, 
     findDoctorById } from "../api";
 import {createExamination} from "../routes/patientPage";
+import { GiPlagueDoctorProfile } from "react-icons/gi";
 
 export default function ExaminationForm(){
 
@@ -148,7 +149,7 @@ export default function ExaminationForm(){
                         <input type="text" value={specializationName} onChange={changeSpecializationName} required/>
                     </label>
                     <label>
-                        Dottore:
+                        Dottore <GiPlagueDoctorProfile/>:
                         <select value={doctorId} onChange={changeDoctorId} required>
                             <option>---</option>
                             {doctorList.map((doctor) => (

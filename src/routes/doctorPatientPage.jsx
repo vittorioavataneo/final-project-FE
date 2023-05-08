@@ -2,6 +2,9 @@ import { Form, useSubmit, Outlet, useParams, NavLink, useNavigate } from 'react-
 import { useState, useEffect } from "react";
 import { findAllPatientByDoctorId, findPatientByName } from "../api"; 
 import pages from "../assets/pages.mp4";
+import { BsFillPersonFill, BsFillPersonLinesFill } from "react-icons/bs";
+import { FaFileMedicalAlt } from "react-icons/fa";
+import { AiFillHome } from "react-icons/ai";
 
 
 export default function DoctorPatientPage() {
@@ -42,13 +45,13 @@ export default function DoctorPatientPage() {
         <video src={pages} autoPlay loop muted/>
         <nav className="navbar">
             <NavLink to="/">
-                Home/Logout
+                Home/Logout <AiFillHome/>
             </NavLink>
             <NavLink to={`/doctor/${userId}/patients`}>
-                Pazienti
+                Pazienti <BsFillPersonFill/>
             </NavLink>
             <NavLink to={`/doctor/${userId}/examinations`}>
-                Visite Mediche
+                Visite Mediche <FaFileMedicalAlt/>
             </NavLink>
         </nav>
 
@@ -79,7 +82,7 @@ export default function DoctorPatientPage() {
                         <NavLink 
                             to={`/doctor/${userId}/patients/${patient.id}`}
                         >
-                            {patient.firstname} {patient.lastname}
+                            {patient.firstname} {patient.lastname} <BsFillPersonLinesFill/>
                         </NavLink>
                     </li>
                     ))

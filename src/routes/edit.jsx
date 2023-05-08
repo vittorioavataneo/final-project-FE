@@ -100,7 +100,7 @@ function Edit() {
           </div>
           <div id="sezNote" class="row">
             <div class="col-1">
-              Note:
+              Referto:
             </div>
             <div id="note" class="col">
                 <label className='textNote'>

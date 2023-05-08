@@ -1,5 +1,6 @@
 import { Outlet, useParams, NavLink } from 'react-router-dom';
 import IndexPage from './index';
+import { FaFileMedicalAlt } from "react-icons/fa";
 
 export default function DoctorPage() {
     const { userId } = useParams();
@@ -14,7 +15,7 @@ export default function DoctorPage() {
                 Pazienti
             </NavLink>
             <NavLink to={`/doctor/${userId}/examinations`}>
-                Visite Mediche
+                Visite Mediche <FaFileMedicalAlt/>
             </NavLink>
         </nav>
         <div>
